@@ -32,12 +32,12 @@ with st.sidebar:
         try:
             model.load_state_dict(torch.load(model_file, map_location=torch.device('cpu')))
             model.eval()
-            st.success("✅ Model loaded successfully!")
+            st.success("Model loaded successfully!")
         except Exception as e:
-            st.error(f"❌ Error loading model: {str(e)}")
+            st.error(f"Error loading model: {str(e)}")
             model_file = None
     else:
-        st.warning("⚠️ Please train and upload a model first")
+        st.warning("Please train and upload a model first")
         st.markdown("""
         **To get a model:**
         1. Run `mnist_sequential.ipynb`
