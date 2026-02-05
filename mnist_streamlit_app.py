@@ -6,14 +6,17 @@ import numpy as np
 from streamlit_drawable_canvas import st_canvas
 
 # Define the same model architecture as in the notebook
-model = nn.Sequential(
-    nn.Flatten(),
-    nn.Linear(28*28, 128),
-    nn.ReLU(),
-    nn.Linear(128, 64),
-    nn.ReLU(),
-    nn.Linear(64, 10)
-)
+  model = nn.Sequential(                                                                                                                                                                                             
+      nn.Flatten(),
+      nn.Linear(28*28, 128),
+      nn.ReLU(),
+      nn.Dropout(0.3),  # Add dropout
+      nn.Linear(128, 64),
+      nn.ReLU(),
+      nn.Dropout(0.3),  # Add dropout
+      nn.Linear(64, 10)
+  )
+
 
 # Page config
 st.set_page_config(page_title="MNIST Digit Classifier", page_icon="🔢", layout="wide")
