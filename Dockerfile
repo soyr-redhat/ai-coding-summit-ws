@@ -16,6 +16,7 @@ RUN echo '#!/bin/bash' > /opt/app-root/bin/entrypoint.sh && \
     echo 'rm -rf workshop-code .temp-repo' >> /opt/app-root/bin/entrypoint.sh && \
     echo 'git clone https://github.com/soyr-redhat/ai-coding-summit-ws .temp-repo' >> /opt/app-root/bin/entrypoint.sh && \
     echo 'cp -f .temp-repo/mnist_sequential.ipynb .' >> /opt/app-root/bin/entrypoint.sh && \
+    echo 'cp -r .temp-repo/img .' >> /opt/app-root/bin/entrypoint.sh && \
     echo 'rm -rf .temp-repo' >> /opt/app-root/bin/entrypoint.sh && \
     # --- END CLONE LOGIC ---
     echo 'exec "$@"' >> /opt/app-root/bin/entrypoint.sh
