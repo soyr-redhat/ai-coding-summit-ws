@@ -6,7 +6,7 @@ USER 0
 # 2. Bake in backup
 RUN mkdir -p /opt/app-root/workshop
 COPY mnist_sequential.ipynb /opt/app-root/workshop/
-COPY mnist_streamlit_app.py /opt/app-root/workshop/
+COPY img /opt/app-root/workshop/
 RUN chown -R 1001:0 /opt/app-root/workshop && chmod -R g+w /opt/app-root/workshop
 
 # 3. The Entrypoint Script
