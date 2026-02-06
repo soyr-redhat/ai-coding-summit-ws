@@ -3,9 +3,6 @@ FROM image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/py
 
 USER 0
 
-# 1. Install Streamlit for interactive demo
-RUN pip install --no-cache-dir streamlit streamlit-drawable-canvas
-
 # 2. Bake in backup
 RUN mkdir -p /opt/app-root/workshop
 COPY mnist_sequential.ipynb /opt/app-root/workshop/
@@ -19,7 +16,6 @@ RUN echo '#!/bin/bash' > /opt/app-root/bin/entrypoint.sh && \
     echo 'rm -rf workshop-code .temp-repo' >> /opt/app-root/bin/entrypoint.sh && \
     echo 'git clone https://github.com/soyr-redhat/ai-coding-summit-ws .temp-repo' >> /opt/app-root/bin/entrypoint.sh && \
     echo 'cp -f .temp-repo/mnist_sequential.ipynb .' >> /opt/app-root/bin/entrypoint.sh && \
-    echo 'cp -f .temp-repo/mnist_streamlit_app.py .' >> /opt/app-root/bin/entrypoint.sh && \
     echo 'rm -rf .temp-repo' >> /opt/app-root/bin/entrypoint.sh && \
     # --- END CLONE LOGIC ---
     echo 'exec "$@"' >> /opt/app-root/bin/entrypoint.sh

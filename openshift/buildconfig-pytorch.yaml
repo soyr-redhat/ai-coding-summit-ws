@@ -1,0 +1,31 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: workshop-pytorch-mnist
+  namespace: ai-coding-summit-neural-nets
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: workshop-pytorch-mnist:latest
+  source:
+    type: Git
+    git:
+      uri: https://github.com/soyr-redhat/ai-coding-summit-ws
+      ref: main
+    contextDir: "."
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  resources:
+    limits:
+      memory: 4Gi
+      cpu: "2"
+    requests:
+      memory: 2Gi
+      cpu: "1"
+  completionDeadlineSeconds: 1800
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
